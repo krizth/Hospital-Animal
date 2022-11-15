@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('user', {
+export const useUserStore = defineStore('user', {
   state: () => ({
-
     user: {
       uid: 'fistUserUID-----------------------------',
       name: 'Primer Usuario',

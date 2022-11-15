@@ -1,3 +1,7 @@
-import { CalendarHour } from '../models'
+import { Hour, StoredHour } from '../models';
 
-export default CalendarHour;
+export interface Calendar {
+  hours: Array<StoredHour>;
+}
+
+export type { Hour };

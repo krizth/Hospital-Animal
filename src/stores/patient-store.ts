@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('patient', {
+export const usePatientStore = defineStore('patient', {
   state: () => ({
     uid: 'fistPatientUID-----------------------------',
     name: 'Primer patient',

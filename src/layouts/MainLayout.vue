@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated style="height: 70px" class="bg-primary text-white">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+        <q-btn dense class="text-default" flat round icon="ion-menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>
           <q-avatar size="60px">
             <q-img
@@ -12,10 +12,10 @@
               src="~/assets/logo-small.png"
             />
           </q-avatar>
-          <span class="text-warning"> Hospital Animal </span>
+          <span class="app-header-text">Vet-HIS</span>
         </q-toolbar-title>
 
-        <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
+        <q-btn class="text-default" dense flat round icon="ion-menu" @click="toggleRightDrawer" />
       </q-toolbar>
     </q-header>
 
@@ -27,9 +27,20 @@
       side="left"
       bordered
     >
-      <q-list class="q-pt-md">
+      <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
+        <div class="absolute-bottom bg-transparent">
+          <q-avatar size="56px" class="q-mb-sm">
+            <img src="https://ui-avatars.com/api/?name=Primer+Usuario">
+          </q-avatar>
+          <div class="text-default">Usuario</div>
+        </div>
+      </q-img>
+      <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
+        <q-list class="q-pt-md">
         <LeftMenu v-for="item in linksList" v-bind="item" :key="item.title" />
-      </q-list>
+        </q-list>
+      </q-scroll-area>
+
     </q-drawer>
 
     <q-drawer v-model="rightDrawerOpen" side="right" bordered> </q-drawer>
@@ -46,47 +57,30 @@ import LeftMenu from 'components/LeftMenu.vue';
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev',
+    title: 'Agenda Médica',
+    caption: '',
+    icon: 'ion-ios-calendar',
+    link: '/medical-schedule',
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework',
+    title: 'Clientes',
+    caption: '',
+    icon: 'ion-ios-contacts',
+    link: '/clients',
+    label:'Aaaaaaaaaaaaaa'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev',
+    title: 'Pacientes',
+    caption: '',
+    icon: 'ion-ios-medkit',
+    link: '/patient'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev',
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev',
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev',
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev',
-  },
+    title: 'Configuración',
+    caption: '',
+    icon: 'ion-ios-settings',
+    link: '/settings',
+  }
 ];
 
 export default defineComponent({
@@ -97,7 +91,7 @@ export default defineComponent({
   },
 
   setup() {
-    const leftDrawerOpen = ref(false);
+    const leftDrawerOpen = ref(true);
     const rightDrawerOpen = ref(false);
 
     return {

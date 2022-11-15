@@ -1,1 +1,22 @@
 // app global css in SCSS form
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body{
+  font-family: 'Poppins', sans-serif !important;
+}
+.text-default{
+  color: #d2dff8;
+  font-weight: bold;
+  font-size:15px;
+}
+.icon-default{
+  font-size: 22px;
+  color: #d2dff8;
+}
+
+.app-header-text {
+  color: #d2dff8;
+  font-weight: bold;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

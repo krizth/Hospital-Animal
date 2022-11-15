@@ -1,16 +1,18 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('authentification', {
+export const useAuthStore = defineStore('authentication', {
   state: () => ({
     access_token: 'token----------------',
     token_type: 'Bearer',
-    expires_in: 95000000
+    expires_in: 950000,
   }),
 
   getters: {
-    token: (state) => `${state.keystore.token_type} ${state.keystore.access_token}`
+    token: (state) =>
+      `${state.token_type} ${state.access_token}`,
   },
 
   actions: {
+
   },
 });

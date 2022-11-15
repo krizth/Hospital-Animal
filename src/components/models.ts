@@ -1,5 +1,4 @@
-export interface CalendarHour {
-  uid: string;
+export interface Hour {
   description: string;
   emergency: boolean;
   commissionPayed: boolean;
@@ -7,8 +6,11 @@ export interface CalendarHour {
   start: string;
   end: string;
   scheduledBy: Scheduler;
-  client: Client,
-  patient: Patient
+  client: Client;
+  patient: Patient;
+}
+export interface StoredHour extends Hour {
+  uid: string;
 }
 export interface Scheduler {
   entity: string;
@@ -23,7 +25,6 @@ export interface Coordinates {
   lng: number;
 }
 export interface Patient {
-  uid: string;
   name: string;
   age: number;
   ageUnity: string;
@@ -33,27 +34,34 @@ export interface Patient {
   weightUnit: string;
   location: Location;
 }
-export interface Client {
+export interface StoredPatient extends Patient {
   uid: string;
+}
+export interface Client {
   name: string;
   age: number;
   location: Location;
   responsibleOf: Array<Patient>;
 }
-export interface Stablishment {
+export interface StoredClient extends Client {
   uid: string;
+}
+export interface Establishment {
   location: Location;
   interval: number;
   active: boolean;
-  officeHours: OfficeHours,
+  officeHours: OfficeHours;
   avatar: string;
   cellNumber: string;
   specialities: Array<string>;
 }
-
+export interface StoredEstablishment extends Establishment {
+  uid: string;
+}
 export interface OfficeHours {
   urgency: boolean;
   start: string;
   end: string;
-  days: Array<string>
+  days: Array<string>;
 }
+

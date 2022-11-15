@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('client', {
+export const useClientStore = defineStore('client', {
   state: () => ({
     uid: 'fistClientUID-----------------------------',
     name: 'Primer cliente',
@@ -36,7 +36,7 @@ export const useCounterStore = defineStore('client', {
         weight: 3.5,
         weightUnit: 'kg',
       },
-    ]
+    ],
   }),
 
   getters: {},

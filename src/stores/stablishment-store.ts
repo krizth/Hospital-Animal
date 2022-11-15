@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { api } from 'src/boot/axios';
-import { Stablishment } from 'components/models'
-export const useCounterStore = defineStore('stablishment', {
+import { Establishment } from 'components/models';
+export const useCounterStore = defineStore('establishment', {
   state: () => ({
-    uid: 'stablishmentUID------------------------1',
+    uid: 'establishmentUID------------------------1',
     location: {
       address: 'Picarte 3000 ,Valdivia, Región de los Ríos',
       coordinates: {
@@ -30,18 +30,17 @@ export const useCounterStore = defineStore('stablishment', {
     races: ['Race1', 'Race2', 'Race3'],
     species: ['SpecialityUID1', 'SpecialityUID2', 'SpecialityUID3'],
     requiresCommission: false,
-    name: 'Example Stablishment'
+    name: 'Example establishment',
   }),
 
-  getters: {
-
-  },
+  getters: {},
 
   actions: {
-    storeStablishment(stablishment: Stablishment) {
-      api.post('/stablishment', {
-
-      })
+    async storeEstablishment(establishment: Establishment) {
+      return await api.post('/establishment', establishment);
+    },
+    async updateEstablishment(establishment: Establishment) {
+      return await api.put('/establishment', establishment)
     }
-  }
+  },
 });

@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('calendar', {
+export const useCalendarStore = defineStore('calendar', {
   state: () => ({
-    establishmentUid: 'establishmentUID------1',
     takenHours: [
       {
         uid: 'calendarUID----1',
