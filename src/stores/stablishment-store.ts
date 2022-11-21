@@ -40,7 +40,7 @@ export const useCounterStore = defineStore('establishment', {
       return await api.post('/establishment', establishment);
     },
     async updateEstablishment(establishment: Establishment) {
-      return await api.put('/establishment', establishment)
-    }
+      return await api.put('/establishment', establishment);
+    },
   },
 });

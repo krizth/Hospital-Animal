@@ -1,26 +1,29 @@
 <template>
-  <q-btn text-color="white" :class="{'positive':$props?.positive,'negative':!$props?.positive}" no-caps v-bind="$attrs" />
-
+  <q-btn
+    text-color="white"
+    :class="{ positive: $props?.positive, negative: !$props?.positive }"
+    no-caps
+    v-bind="$attrs"
+  />
 </template>
 
 <script>
 export default {
   name: 'uiBtn',
-  props:{
-    positive:{
+  props: {
+    positive: {
       type: Boolean,
-      default: false
-    }
-  }
-}
+      default: false,
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-.positive{
+.positive {
   background-color: rgba(85, 159, 190, 0.82);
 }
-.negative{
+.negative {
   background-color: $negative;
 }
-
 </style>

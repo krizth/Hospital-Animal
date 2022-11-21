@@ -1,14 +1,14 @@
 // app global css in SCSS form
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-body{
+body {
   font-family: 'Poppins', sans-serif !important;
 }
-.text-default{
+.text-default {
   color: #d2dff8;
   font-weight: bold;
-  font-size:15px;
+  font-size: 15px;
 }
-.icon-default{
+.icon-default {
   font-size: 22px;
   color: #d2dff8;
 }
@@ -19,4 +19,12 @@ body{
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.i-layout-page-container {
+  background: url('/landing.jpg') no-repeat;
+  background-size: cover;
+  padding-top: 0 !important;
+}
+.bg-facebook {
+  background-color: #2e88fd !important;
 }

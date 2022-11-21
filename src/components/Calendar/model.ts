@@ -1,7 +1,10 @@
-import { Hour, StoredHour } from '../models';
+import { Event } from '../models';
 
-export interface Calendar {
-  hours: Array<StoredHour>;
+interface Day {
+  events: Array<Event>;
+  date: string;
 }
-
-export type { Hour };
+interface Calendar {
+  days: Array<Day>;
+}
+export type { Event, Day, Calendar };
