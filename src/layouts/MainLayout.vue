@@ -48,7 +48,7 @@
       >
         <div class="absolute-bottom bg-transparent">
           <q-avatar size="56px" class="q-mb-sm">
-            <q-img :src="user.avatar" />
+            <q-img :src="user.avatar" fit="cover" :srcset="user.avatar" />
           </q-avatar>
           <div class="text-default">{{user.name}}</div>
         </div>

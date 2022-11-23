@@ -22,7 +22,7 @@ export default boot(async ({ router }) => {
     ) => {
       const user = await new Promise<User>(
         (resolve) => auth.onAuthStateChanged(firebaseAuth,
-          async (usr:any) => resolve(usr)));
+          async (usr) => resolve(usr as User)));
       const routeRecord: boolean = trans.matched.some(
         (route: RouteRecord) => route.meta.requiresAuth
       );

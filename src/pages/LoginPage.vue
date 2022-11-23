@@ -21,6 +21,12 @@
               v-model:model-value="login.password"
               type="password"
             />
+           <div class="text-center q-pt-xl">
+             <q-btn-group unelevated push spread rounded >
+               <q-btn @click="setEntity('Professional')" :class="{[entity==='Professional'?'bg-primary':'white']:true}" no-caps push label="Profesional" icon="medical_services" />
+               <q-btn @click="setEntity('Client')" :class="{[entity==='Client'?'bg-primary':'white']:true}"  no-caps push label="Dueño" icon="waling-with-pet" />
+             </q-btn-group>
+           </div>
           </template>
           <template v-slot:custom-actions>
             <q-card-actions
@@ -59,10 +65,11 @@
 import UiCard from 'components/ui/uiCard.vue';
 import UiBtn from 'components/ui/uiBtn.vue';
 import {defineComponent, onMounted, ref} from 'vue';
-import { useAuthStore } from 'stores/authentification-store';
+import {useAuthStore} from 'stores/authentification-store';
 import {Notify} from 'quasar';
 import {useRouter} from 'vue-router';
 import type {EmailAndPasswordCredentials} from 'components/models';
+import {Entity} from 'components/models';
 
 export default defineComponent({
   name: 'LoginPage',
@@ -74,8 +81,19 @@ export default defineComponent({
     const useAuth = useAuthStore();
     const routerPush = useRouter().push;
     const isLoading= ref(false);
+    const entity= ref<Entity>(Entity.Professional)
     const loginWithGoogle = useAuth.loginWithGoogle;
     const emailAndPassword = useAuth.loginWithEmailAndPassword;
+    const setEntity= (entityKey:string)=>{
+      switch (entityKey) {
+        case Entity.Professional:
+          entity.value = Entity.Professional;
+          break;
+        case Entity.Client:
+          entity.value = Entity.Client;
+          break;
+      }
+    }
     onMounted(async ()=>{
       useAuth.redirectResponse(routerPush)
         .catch((e)=>{
@@ -91,6 +109,9 @@ export default defineComponent({
       password: '',
     });
     return {
+      entity,
+      Entity,
+      setEntity,
       loginWithGoogle,
       emailAndPassword,
       isLoading,

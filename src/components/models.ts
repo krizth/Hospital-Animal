@@ -17,9 +17,18 @@ export interface User {
   age?: number;
   avatar: string;
 }
+export interface Professional extends User{
+  role: string;
+  specialities: Array<string>;
+
+}
 export interface Scheduler {
-  entity: string;
+  entity: Entity;
   uid: string;
+}
+export enum Entity {
+  Client = 'Client',
+  Professional = 'Professional',
 }
 export interface Location {
   address: string;

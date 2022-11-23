@@ -5,7 +5,7 @@ import {
   getAuth,
   signInWithRedirect,
   getRedirectResult,
-  createUserWithEmailAndPassword,
+  //createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from 'firebase/auth';
 import {EmailAndPasswordCredentials, Token, User} from 'components/models';
@@ -13,8 +13,7 @@ import {Loading, Notify} from 'quasar';
 import {useUserStore} from 'stores/user-store';
 import firebase from 'firebase/compat';
 import OAuthCredential = firebase.auth.OAuthCredential;
-import FirebaseUser = firebase.auth.UserCredential
-import {Router} from 'vue-router';
+import {NavigationFailure, RouteLocationRaw} from 'vue-router';
 export const useAuthStore = defineStore('authentication', {
 
   state: ():Token => ({
@@ -33,6 +32,7 @@ export const useAuthStore = defineStore('authentication', {
 
   actions: {
     setAuthState(state:OAuthCredential):Token{
+
       this.access_token = state.accessToken;
       this.token_type = 'Bearer';
       this.expires_in = undefined;
@@ -46,14 +46,14 @@ export const useAuthStore = defineStore('authentication', {
       const auth = getAuth();
       await signInWithRedirect(auth, provider);
     },
-    async createUserWithEmailAndPassword(credentials:EmailAndPasswordCredentials){
+   /* async createUserWithEmailAndPassword(credentials:EmailAndPasswordCredentials){
       const auth = getAuth();
       createUserWithEmailAndPassword(auth,credentials.email,credentials.password)
         .then((userCredential) => {
-        console.log()
+        console.log(userCredential)
       })
-    },
-    async loginWithEmailAndPassword(credentials:EmailAndPasswordCredentials,routerPush:any){
+    },*/
+    async loginWithEmailAndPassword(credentials:EmailAndPasswordCredentials,routerPush:(to:RouteLocationRaw)=>Promise<NavigationFailure | void | undefined>){
       const auth = getAuth();
       const userStore = useUserStore()
       Loading.show()
@@ -77,24 +77,24 @@ export const useAuthStore = defineStore('authentication', {
         }).catch((e)=>Notify.create({message:e.message, type:'error',}))
         .finally(()=>Loading.hide())
     },
-    async redirectResponse(routerPush:any){
+    async redirectResponse(routerPush:(to:RouteLocationRaw)=>Promise<NavigationFailure | void | undefined>){
       const auth = getAuth();
        const userStore = useUserStore()
             getRedirectResult(auth)
-        .then(async (result: UserCredential | any) => {
+        .then(async (result: UserCredential | null) => {
           if (result?.user) {
-            const credentials: OAuthCredential  =
-              await GoogleAuthProvider.credentialFromResult(result) as Token|any;
+            const credentials: OAuthCredential|unknown  =
+              await GoogleAuthProvider.credentialFromResult(result) as Token|unknown;
             const User : User = {
               name:result.user?.displayName,
               uid:result.user?.uid,
               email:result.user?.email,
               age:undefined,
               avatar:result.user?.photoURL|| `https://ui-avatars.com/api/?name=${result.user?.displayName}`
-            }
+            } as User
             Loading.show()
            userStore.$state=User
-            this.setAuthState(credentials)
+            this.setAuthState(credentials as OAuthCredential)
             if(!!this.access_token) {
               Notify.create({
                 message: 'Login Correcto, Redirigiendo...',
