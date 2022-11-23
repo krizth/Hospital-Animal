@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
-import { Calendar } from 'components/Calendar/model';
-import { Client, Patient } from 'components/models';
+import {defineStore} from 'pinia';
+import {Calendar} from 'components/Calendar/model';
+import {Client, Entity, Patient} from 'components/models';
 
 export const useCalendarStore = defineStore('calendar', {
   state: () =>
@@ -17,7 +17,7 @@ export const useCalendarStore = defineStore('calendar', {
               commissionPayed: false,
               emergency: false,
               scheduledBy: {
-                entity: 'client',
+                entity: Entity.Client,
                 uid: 'fistClientUID-----------------------------',
               },
               patient: {
@@ -36,7 +36,7 @@ export const useCalendarStore = defineStore('calendar', {
               description: 'Paciente con corte en la oreja',
               commissionPayed: false,
               scheduledBy: {
-                entity: 'client',
+                entity: Entity.Client,
                 uid: 'secondClientUID-----------------------------',
               },
               patient: {

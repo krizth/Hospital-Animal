@@ -32,24 +32,25 @@
             v-for="day in calendar.$state.days"
             :name="day.date"
             :key="day.date"
+            class="q-pa-none"
           >
             <q-splitter v-model="event" style="height: 430px">
               <template v-slot:before>
+                <q-item-label header>Horas Programadas</q-item-label>
                 <q-scroll-area
-                  style="width: 300px; height: 320px"
+                  style="width: 300px; height: 88%"
                   class="q-pa-md"
                 >
                   <q-list
-                    bordered
                     padding
-                    class="rounded-borders"
+                    class="rounded-borders "
                     style="max-width: 350px"
                   >
-                    <q-item-label header>Horas Programadas</q-item-label>
                     <q-item
                       @click="selectedEvent(ev)"
                       clickable
                       v-ripple
+                      :focused="event?.uid===ev.uid"
                       v-for="ev in day.events"
                       :key="ev.uid"
                     >
@@ -85,10 +86,10 @@
               <template v-slot:after v-if="!!event">
                 <q-tab-panels v-model="event" />
                 <q-tab-panel :name="event?.uid">
-                  <q-tab-panel :name="event?.uid">
+                  <q-tab-panel :name="event?.uid" class="q-pa-none">
                     <q-card class="my-card" flat bordered>
                       <q-card-section horizontal>
-                        <q-card-section class="q-pt-xs">
+                        <q-card-section class="q-pa-md">
                           <div class="text-overline">
                             {{ event?.client.name }}
                           </div>
