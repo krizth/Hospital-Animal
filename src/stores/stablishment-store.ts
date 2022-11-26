@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { api } from 'src/boot/axios';
-import { Establishment } from 'components/models';
+import type { Establishment } from 'components/models';
 export const useCounterStore = defineStore('establishment', {
   state: () => ({
     uid: 'establishmentUID------------------------1',

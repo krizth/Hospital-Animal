@@ -23,8 +23,8 @@ export interface Professional extends User{
 
 }
 export interface Scheduler {
-  entity: Entity;
-  uid: string;
+  entity: User;
+  name: Entity
 }
 export enum Entity {
   Client = 'Client',
@@ -51,7 +51,7 @@ export interface Patient {
   location: Location;
 }
 export interface Client extends User {
-  location: Location;
+  location?: Location;
   responsibleOf?: Array<Patient>;
 }
 

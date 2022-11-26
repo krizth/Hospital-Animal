@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Patient } from 'components/models';
+import type { Patient } from 'components/models';
 
 export const usePatientStore = defineStore('patient', {
   state: () =>

@@ -4,7 +4,7 @@
       <div class="card-title">
         <slot name="title"> Card Title </slot>
         <div class="absolute-right">
-          <slot name="close"><q-btn round dense flat icon="ion-close" /></slot>
+          <slot name="close"></slot>
         </div>
       </div>
       <q-separator />
@@ -39,6 +39,6 @@ export default {
 }
 .card {
   border-radius: 12px;
-  background-color: #adcbd61a;
+  background-color: $card;
 }
 </style>

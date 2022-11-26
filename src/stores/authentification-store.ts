@@ -8,12 +8,11 @@ import {
   //createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from 'firebase/auth';
-import {EmailAndPasswordCredentials, Token, User} from 'components/models';
+import type {EmailAndPasswordCredentials, Token, User} from 'components/models';
 import {Loading, Notify} from 'quasar';
 import {useUserStore} from 'stores/user-store';
-import firebase from 'firebase/compat';
-import OAuthCredential = firebase.auth.OAuthCredential;
-import {NavigationFailure, RouteLocationRaw} from 'vue-router';
+import type firebase from 'firebase/compat';
+import type {NavigationFailure, RouteLocationRaw} from 'vue-router';
 export const useAuthStore = defineStore('authentication', {
 
   state: ():Token => ({
@@ -31,7 +30,7 @@ export const useAuthStore = defineStore('authentication', {
   },
 
   actions: {
-    setAuthState(state:OAuthCredential):Token{
+    setAuthState(state:firebase.auth.OAuthCredential):Token{
 
       this.access_token = state.accessToken;
       this.token_type = 'Bearer';
@@ -83,7 +82,7 @@ export const useAuthStore = defineStore('authentication', {
             getRedirectResult(auth)
         .then(async (result: UserCredential | null) => {
           if (result?.user) {
-            const credentials: OAuthCredential|unknown  =
+            const credentials: firebase.auth.OAuthCredential|unknown  =
               await GoogleAuthProvider.credentialFromResult(result) as Token|unknown;
             const User : User = {
               name:result.user?.displayName,
@@ -94,7 +93,7 @@ export const useAuthStore = defineStore('authentication', {
             } as User
             Loading.show()
            userStore.$state=User
-            this.setAuthState(credentials as OAuthCredential)
+            this.setAuthState(credentials as firebase.auth.OAuthCredential)
             if(!!this.access_token) {
               Notify.create({
                 message: 'Login Correcto, Redirigiendo...',

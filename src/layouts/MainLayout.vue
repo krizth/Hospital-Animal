@@ -77,7 +77,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import LeftMenu from 'components/LeftMenu.vue';
-import {User} from 'components/models';
+import type {User} from 'components/models';
 import {useUserStore} from 'stores/user-store';
 
 const linksList = [

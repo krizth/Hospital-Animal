@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
-import { User } from 'components/models';
-import firebase from 'firebase/compat';
-import UserInfo = firebase.UserInfo;
+import type { User } from 'components/models';
+import type firebase from 'firebase/compat';
+
+
 
 export const useUserStore = defineStore('user', {
   state: () :User => ({
@@ -15,7 +16,7 @@ export const useUserStore = defineStore('user', {
   }),
   getters: {},
   actions: {
-    setUser (user:UserInfo) {
+    setUser (user:firebase.UserInfo) {
       this.uid=user?.uid;
       this.email=user?.email || ''
       this.name=user?.displayName || ''
